@@ -1,0 +1,18 @@
+\frametitle{Glitch Attack Settings on BipBip Implementation}
+\begin{itemize}
+    \item \textbf{Initial Step:} Integrated \texttt{sempleserial} for communication between target and scope.
+    \item \textbf{Attack Window:} Identified using BipBip power trace on CWLite — approx.\ between samples \texttt{10820 to 10890}.
+    \item \textbf{CWLite Settings:}
+    \begin{itemize}
+        \item \texttt{scope.glitch.clk_src = "clkgen"}
+        \item \texttt{scope.glitch.output = "clock_xor"}
+        \item \texttt{scope.glitch.trigger_src = "ext_single"}
+        \item \texttt{scope.glitch.repeat = 1}
+        \item \texttt{scope.io.hs2 = "glitch"}
+    \end{itemize}
+    \item \textbf{CWHusky Settings:}
+    \begin{itemize}
+        \item \texttt{scope.glitch.clk_src = "pll"}
+    \end{itemize}
+    \item Attack location on CWHusky determined from BipBip's power trace on that platform.
+\end{itemize}
