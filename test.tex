@@ -111,12 +111,12 @@
             \titlepage
             
         \end{frame}
-        \begin{frame}{Research Timeline}
-          \begin{center}
-              \includegraphics[width=1\linewidth]{images/mtech.drawio.png}
+        % \begin{frame}{Research Timeline}
+        %   \begin{center}
+        %       \includegraphics[width=1\linewidth]{images/mtech.drawio.png}
               
-          \end{center}
-        \end{frame}
+        %   \end{center}
+        % \end{frame}
         \begin{frame}
             \frametitle{Contents}
             \tableofcontents
@@ -170,23 +170,23 @@
   \centering
   \begin{minipage}[b]{0.3\linewidth}
     \centering
-    \includegraphics[width=\linewidth]{images/cwlite_background.JPEG}
+    \includegraphics[width=\linewidth]{images/cwlite_hardware.png}
     \smallskip
-    \textbf{CWNLite with ARM 32-bit Target}
+    CWNLite with ARM 32-bit Target
   \end{minipage}
   \hfill
   \begin{minipage}[b]{0.3\linewidth}
     \centering
-    \includegraphics[width=\linewidth]{images/cwlite_separated_background.JPEG}
+    \includegraphics[width=\linewidth]{images/cwhusky_hardware.png}
     \smallskip
-    \textbf{CWLite with Separate Target}
+   CWHusky with SAM4S Target
   \end{minipage}
   \hfill
   \begin{minipage}[b]{0.3\linewidth}
     \centering
-    \includegraphics[width=\linewidth]{images/cwhusky_background.JPEG}
+    \includegraphics[width=\linewidth]{images/phy_hardware.png}
     \smallskip
-    \textbf{CWHusky setup}
+    PhyWhisperer setup
   \end{minipage}
 \end{frame}
 
@@ -201,16 +201,25 @@
   \includegraphics[width=0.6\linewidth]{images/cwlite.png}
   \smallskip
 
-  
-
 \end{frame}
+\begin{frame}[fragile]{CWhusky with SAM4S Target}
+  \centering
+  \begin{itemize}
+    \item 12-bit 200MS/s ADC for capturing power traces
+    \item Sample Buffer Size:	131124 samples
+    \item Capable of doing both Voltage glitching and clock glitching
+  \end{itemize}
+ \centering
+ \includegraphics[width=0.45\linewidth, angle=0]{images/cwhuskyannoted.png}
 
+  \smallskip
+\end{frame}
 \begin{frame}{Software Environment}
-  
+  \centering
+  \includegraphics[width=0.8\linewidth]{images/softwareenv.png}
   
 \end{frame}
-\subsection{Softeware Environment}
-\subsection{Steps to inject a Fault using ChipWhisperer}
+
 
 \section{Real-world Replication of the State-of-the-Art}
 \begin{frame}{Diagonals in the AES}
@@ -269,11 +278,11 @@ a_{30} & a_{31} & \fcolorbox{orange!80!black}{orange!20}{$a_{32}$} & a_{33} \\
 \]
   
 \end{frame}
-\begin{frame}{Fault Injection at the Start of Round 8 using CW-Lite}
+\begin{frame}{Identifing the location from Power Trace}
   \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{images/aes128_powertrace.png}
-    \caption{Power Trace of AES128}
+    \includegraphics[width=0.7\linewidth]{images/1.png}
+    \caption{Power Trace of AES128 on CWLite-ARM}
   \end{figure}
 \end{frame}
 \begin{frame}[fragile]{Using Clock Glitching}
@@ -304,7 +313,11 @@ a_{30} & a_{31} & \fcolorbox{orange!80!black}{orange!20}{$a_{32}$} & a_{33} \\
     \item Correct Ciphertext: \texttt{f5 d3 d5 85 03 b9 69 9d e7 85 89 5a 96 fd ba af}
   \end{itemize}
   \end{frame}
-
+\begin{frame}[fragile]{Power Trace after the Glitch}
+  \centering
+  \includegraphics[width=0.8\linewidth]{images/2.png}
+  \caption{Power Trace of AES 128 after the Glitch Using CWLite ARM}
+\end{frame}
   \begin{frame}[fragile]{AES Fault Analysis: Rounds 8–10}
     \scriptsize % or \tiny for even smaller
     
@@ -508,7 +521,11 @@ If we represent the $10^{th}$ round key as \(K_{10}\), it can be expressed as:
       \item Correct Ciphertext: \texttt{f5 d3 d5 85 03 b9 69 9d e7 85 89 5a 96 fd ba af}
     \end{itemize}
     \end{frame}
-  
+    \begin{frame}[fragile]{Power Trace after the Glitch}
+      \centering
+      \includegraphics[width=0.7\linewidth]{images/3.png}
+      \caption{Power Trace of AES 128 after the Glitch Using CWLite ARM}
+    \end{frame}
 \begin{frame}[fragile]{AES Fault Analysis: Rounds 8–10}
       \scriptsize % or \tiny for even smaller
       
@@ -751,7 +768,7 @@ If we represent the $10^{th}$ round key as \(K_{10}\), it can be expressed as:
         \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Attack Model}
+\begin{frame}[fragile]{Dilip et al. $'s$ Attack Model}
   \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\textwidth]{images/bipbip_attack.png}
@@ -766,7 +783,7 @@ If we represent the $10^{th}$ round key as \(K_{10}\), it can be expressed as:
 \begin{frame}[fragile]{Power Trace of BipBip on CWLite-ARM}
   \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/bipbip_powertrace.png}
+    \includegraphics[width=0.6\textwidth]{images/bibbip_attack_loc.png}
     \caption{Power trace BipBip on CWLite-ARM}
     \label{fig:bipbip_powertrace}
 \end{figure}
@@ -798,62 +815,52 @@ If we represent the $10^{th}$ round key as \(K_{10}\), it can be expressed as:
     \centering
     \tiny % Reduce font size to make it fit better
     \caption{Summary of Clock Glitch Fault Injection Parameters and Results}
-    \begin{tabular}{|c|c|c|c|p{5.5cm}|} % narrower last column
-    \hline
-    \textbf{Location} & \textbf{Width} & \textbf{Offset} & \textbf{Plaintext} & \textbf{Faulty vs Correct state (Input of Round 9)} \\
-    \hline
-    10841 & 1.17 & 1.17 & 052aa7 & 
-    \parbox{5.5cm}{
-        \text{}\\
-        \textbf{Faulty:} 0\textcolor{red}{1}1100 100111 111101 101111\\
-        \textbf{Correct:} 0\textcolor{green}{0}1100\ \ 100111\ 111101\ 101111 \\
-    } \\
-    \hline
-    10842 & 1.95 & 1.17 & 6462d1 & 
-    \parbox{5.5cm}{
-        \text{}\\
-        \textbf{Faulty:} 00\textcolor{red}{0}100 100111 111101 101111\\
-        \textbf{Correct:} 00\textcolor{green}{1}100\ \ 100111\ 111101\ 101111 \\
-    } \\
-    \hline
-    10855 & 1.9 & 1.7 & 6f2a99 &
-    \parbox{5.5cm}{
-        \text{}\\
-        \textbf{Faulty:} 001\textcolor{red}{0}00\ 100111\ 111101\ 101111 \\
-       \textbf{Correct:} 001\textcolor{green}{1}00\ 100111\ 111101\ 101111 \\
-
-    } \\
-    \hline
-    10866 & 1.17 & 1.17 & 3c12bc & 
-    \parbox{5.5cm}{
-        \text{}\\
-        \textbf{Faulty:} 00110\textcolor{red}{1}\ 100111\ 111101\ 101111 \\
-        \textbf{Correct:} 00110\textcolor{green}{0}\ 100111\ 111101\ 101111 \\
-
-    } \\
-    \hline
-    10878 & 1.17 & 1.17 & 105bfc & 
-    \parbox{5.5cm}{
-        \text{}\\
-        \textbf{Faulty:} 001100\ 1001\textcolor{red}{0}1\ 111101\ 101111 \\
-        \textbf{Correct:} 001100\ 1001\textcolor{green}{1}1\ 111101\ 101111 \\
-
-    } \\
-    \hline
-    10887 & 1.9 & 1.17 & 1c52e4 & 
-    \parbox{5.5cm}{
-        \text{}\\
-        \textbf{Faulty:} 001100\ 10\textcolor{red}{1}111\ 111101\ 101111 \\
-        \textbf{Correct:} 001100\ 10\textcolor{green}{0}111\ 111101\ 101111 \\
-
-    } \\
-    \hline
-    \end{tabular}
+    \begin{tabular}{|c|c|c|c|p{5.5cm}|}
+      \hline
+      \textbf{Location} & \textbf{Width} & \textbf{Offset} & \textbf{Plaintext} & \textbf{Faulty vs Correct state (Input of Round 9)} \\
+      \hline
+      10841 & 1.17 & 1.17 & 052aa7 & 
+      \parbox{5.5cm}{
+          \textbf{Faulty:} 0\colorbox{red!30}{1}100\ 100111\ 111101\ 101111\\
+          \textbf{Correct:} 0\colorbox{green!30}{0}100\ 100111\ 111101\ 101111 \\
+      } \\
+      \hline
+      10842 & 1.95 & 1.17 & 6462d1 & 
+      \parbox{5.5cm}{
+          \textbf{Faulty:} 00\colorbox{red!30}{0}100\ 100111\ 111101\ 101111\\
+          \textbf{Correct:} 00\colorbox{green!30}{1}100\ 100111\ 111101\ 101111 \\
+      } \\
+      \hline
+      10855 & 1.9 & 1.7 & 6f2a99 &
+      \parbox{5.5cm}{
+          \textbf{Faulty:} 001\colorbox{red!30}{0}00\ 100111\ 111101\ 101111 \\
+          \textbf{Correct:} 001\colorbox{green!30}{1}00\ 100111\ 111101\ 101111 \\
+      } \\
+      \hline
+      10866 & 1.17 & 1.17 & 3c12bc & 
+      \parbox{5.5cm}{
+          \textbf{Faulty:} 00110\colorbox{red!30}{1}\ 100111\ 111101\ 101111 \\
+          \textbf{Correct:} 00110\colorbox{green!30}{0}\ 100111\ 111101\ 101111 \\
+      } \\
+      \hline
+      10878 & 1.17 & 1.17 & 105bfc & 
+      \parbox{5.5cm}{
+          \textbf{Faulty:} 001100\ 1001\colorbox{red!30}{0}1\ 111101\ 101111 \\
+          \textbf{Correct:} 001100\ 1001\colorbox{green!30}{1}1\ 111101\ 101111 \\
+      } \\
+      \hline
+      10887 & 1.9 & 1.17 & 1c52e4 & 
+      \parbox{5.5cm}{
+          \textbf{Faulty:} 001100\ 10\colorbox{red!30}{1}11\ 111101\ 101111 \\
+          \textbf{Correct:} 001100\ 10\colorbox{green!30}{0}11\ 111101\ 101111 \\
+      } \\
+      \hline
+  \end{tabular}
     \label{tab:glitch_summary}
     \end{table}
 
 \end{frame}
-\section{Preparing PQC for Fault Analysis: A Kyber Implementation}
+\section{Fault Analysis of PQC: Injection Attack on Kyber}
 \begin{frame}{NIST PQC Standardization Overview}
   \small
   \begin{itemize}
@@ -868,7 +875,7 @@ If we represent the $10^{th}$ round key as \(K_{10}\), it can be expressed as:
       \item Round 3: 7 finalists + 8 alternates (July 2020)
       \item \textbf{Final Selections (July 2022):}
       \begin{itemize}
-        \item \textbf{Encryption/KEM:} \textcolor{blue}{Kyber (CRYSTALS-Kyber)}
+        \item \textbf{KEM:} \textcolor{blue}{Kyber (CRYSTALS-Kyber)}
         \item \textbf{Signatures:} \textcolor{blue}{Dilithium, Falcon, SPHINCS+}
       \end{itemize}
     \end{itemize}
@@ -893,5 +900,12 @@ If we represent the $10^{th}$ round key as \(K_{10}\), it can be expressed as:
 \end{frame}
 
 \section{Future Work}
-
+\begin{frame}
+  Future work includes performing fault injection attacks on other PQC algorithms such as Kyber and Dilithium. Additionally, similar attacks can be extended to other cryptographic ciphers to evaluate their resistance to implementation-level faults.
+\end{frame}
+\begin{frame}
+  \LARGE
+  \centering
+  THANK YOU
+\end{frame}
 \end{document}

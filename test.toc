@@ -1,8 +1,0 @@
-\beamer@sectionintoc {1}{Introduction To Fault Attacks}{4}{0}{1}
-\beamer@sectionintoc {2}{Setting Up a Fault Injection Lab with ChipWhisperer}{6}{0}{2}
-\beamer@subsectionintoc {2}{1}{Softeware Environment}{11}{0}{2}
-\beamer@subsectionintoc {2}{2}{Steps to inject a Fault using ChipWhisperer}{11}{0}{2}
-\beamer@sectionintoc {3}{Real-world Replication of the State-of-the-Art}{11}{0}{3}
-\beamer@sectionintoc {4}{Flipping Bits to Break BipBip}{22}{0}{4}
-\beamer@sectionintoc {5}{Preparing PQC for Fault Analysis: A Kyber Implementation}{28}{0}{5}
-\beamer@sectionintoc {6}{Future Work}{31}{0}{6}
